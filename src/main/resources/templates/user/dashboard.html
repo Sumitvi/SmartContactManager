@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title data-th-text="${loggedInUser?.name ?: 'Guest'} + ' | Dashboard'">Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+<div id="content">
+    <!-- Sidebar (Visible if user is logged in) -->
+    <div th:if="${loggedInUser}">
+        <div data-th-replace="~{user/sidebar :: sidebar}"></div>
+    </div>
+
+    <!-- Main Dashboard Content -->
+    <div class="sm:pl-64 pt-20 min-h-screen flex flex-col items-center justify-center">
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl max-w-3xl w-full text-center">
+            <!-- Profile Section -->
+            <div class="mb-6">
+                <h1 class="text-4xl font-bold mb-2">
+                    Welcome, <span class="text-blue-600" data-th-text="${loggedInUser?.name ?: 'Guest'}">User</span>!
+                </h1>
+                <p class="text-gray-600 dark:text-gray-400">This is your personalized dashboard.</p>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                <div class="p-6 bg-gray-100 dark:bg-gray-700 rounded-lg shadow-md">
+                    <h2 class="text-xl font-semibold">Total Contact</h2>
+                    <p class="text-3xl font-bold text-blue-500">12</p>
+                </div>
+                <div class="p-6 bg-gray-100 dark:bg-gray-700 rounded-lg shadow-md">
+                    <h2 class="text-xl font-semibold">Tasks Completed</h2>
+                    <p class="text-3xl font-bold text-green-500">89%</p>
+                </div>
+                <div class="p-6 bg-gray-100 dark:bg-gray-700 rounded-lg shadow-md">
+                    <h2 class="text-xl font-semibold">Favourite Contact</h2>
+                    <p class="text-3xl font-bold text-red-500">5</p>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="mt-8 flex justify-center gap-4">
+                <a href="@{'/profile'}" class="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">
+                    View Profile
+                </a>
+                <a href="/tasks" class="px-6 py-3 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition">
+                    Manage Tasks
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    console.log("Dashboard page loaded");
+</script>
+</body>
+</html>
+
+
+<!--<!doctype html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--    <title>Document</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>This Is DashBoard</h1>-->
+
+<!--</body>-->
+<!--</html>-->
